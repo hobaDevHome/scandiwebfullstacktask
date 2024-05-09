@@ -5,10 +5,11 @@ export default class ProductsList extends Component {
     super(props);
   }
   render() {
-    console.log(this.props.selectedCategory);
     return (
       <div>
-        {this.props.selectedCategory} <div></div>
+        {this.props.products.map((product) => (
+          <h2>{product.name}</h2>
+        ))}
       </div>
     );
   }

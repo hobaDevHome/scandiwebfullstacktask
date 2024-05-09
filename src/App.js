@@ -5,20 +5,39 @@ import React, { Component } from "react";
 import NavBar from "./components/NavBar";
 import ProductsList from "./pages/ProductsList";
 import ProductDetails from "./pages/ProductDetails";
+import { data } from "./data/data";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.setCategory = this.setCategory.bind(this);
     this.state = {
-      selectedCategory: "",
+      selectedCategory: "all",
+      products: data.data.products,
     };
   }
   setCategory(category) {
-    // console.log(category);
     this.setState({
       selectedCategory: category,
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (data.data.products.length > 0) {
+      let temp;
+      if (this.state.selectedCategory !== "all") {
+        temp = data.data.products.filter(
+          (product) => product.category === this.state.selectedCategory
+        );
+      } else {
+        temp = data.data.products;
+      }
+      if (prevState.products.length !== temp.length) {
+        this.setState({
+          products: temp,
+        });
+      }
+    }
   }
   render() {
     return (
@@ -27,9 +46,7 @@ export default class App extends Component {
         <Routes>
           <Route
             index
-            element={
-              <ProductsList selectedCategory={this.state.selectedCategory} />
-            }
+            element={<ProductsList products={this.state.products} />}
           />
 
           <Route path="/products/:id" element={<ProductDetails />} />
