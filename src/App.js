@@ -46,7 +46,12 @@ export default class App extends Component {
         <Routes>
           <Route
             index
-            element={<ProductsList products={this.state.products} />}
+            element={
+              <ProductsList
+                products={this.state.products}
+                category={this.state.selectedCategory}
+              />
+            }
           />
 
           <Route path="/products/:id" element={<ProductDetails />} />

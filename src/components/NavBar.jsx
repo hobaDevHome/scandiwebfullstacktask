@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "../images/logo.png";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const categories = ["all", "clothes", "tech"];
 
@@ -23,16 +24,18 @@ export default class NavBar extends Component {
         <div className="flex-1">
           <ul className="flex ">
             {categories.map((category) => (
-              <li
-                onClick={() => this.chooseCategory(category)}
-                className={`mr-5 cursor-pointer ${
-                  this.state.selectedCategory === "category"
-                    ? " text-regal-green border-b-2 border-emerald-500 pb-4 px-3"
-                    : "text-black border-0 hover:text-regal-green hover:border-b-2 hover:border-emerald-500 pb-4 px-3"
-                }`}
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </li>
+              <Link to={`/`}>
+                <li
+                  onClick={() => this.chooseCategory(category)}
+                  className={`mr-5 cursor-pointer ${
+                    this.state.selectedCategory === category
+                      ? " text-regal-green border-b-2 border-emerald-500 pb-4 px-3"
+                      : "text-black border-0 hover:text-regal-green hover:border-b-2 hover:border-emerald-500 pb-4 px-3"
+                  }`}
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </li>
+              </Link>
             ))}
           </ul>
         </div>
