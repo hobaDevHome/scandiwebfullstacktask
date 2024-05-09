@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SelectColor from "../components/SelectColor";
+import SelectSize from "../components/SelectSize";
+import SelectCapacity from "../components/SelectCapacity";
 
 export default class ProductDetails extends Component {
   product = {
@@ -71,6 +73,38 @@ export default class ProductDetails extends Component {
         type: "swatch",
         __typename: "AttributeSet",
       },
+      {
+        id: "Size",
+        items: [
+          {
+            displayValue: "40",
+            value: "40",
+            id: "40",
+            __typename: "Attribute",
+          },
+          {
+            displayValue: "41",
+            value: "41",
+            id: "41",
+            __typename: "Attribute",
+          },
+          {
+            displayValue: "42",
+            value: "42",
+            id: "42",
+            __typename: "Attribute",
+          },
+          {
+            displayValue: "43",
+            value: "43",
+            id: "43",
+            __typename: "Attribute",
+          },
+        ],
+        name: "Size",
+        type: "text",
+        __typename: "AttributeSet",
+      },
     ],
     prices: [
       {
@@ -91,6 +125,12 @@ export default class ProductDetails extends Component {
   chooseColor(color) {
     console.log("color", color);
   }
+  chooseSize(size) {
+    console.log("size", size);
+  }
+  chooseCapacity(capacity) {
+    console.log("capacity", capacity);
+  }
   render() {
     // console.log(this.product.attributes.filter((e) => e.id === "Color"));
     return (
@@ -109,7 +149,15 @@ export default class ProductDetails extends Component {
             {this.product.name}
           </div>
           <div>
-            <SelectColor chooseColor={this.chooseColor} />
+            {this.attributesTypes.includes("Capacity") && (
+              <SelectCapacity chooseCapacity={this.chooseCapacity} />
+            )}
+            {this.attributesTypes.includes("Color") && (
+              <SelectColor chooseColor={this.chooseColor} />
+            )}
+            {this.attributesTypes.includes("Size") && (
+              <SelectSize chooseSize={this.chooseSize} />
+            )}
           </div>
         </div>
       </div>
