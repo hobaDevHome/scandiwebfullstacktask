@@ -13,9 +13,9 @@ export default class ProductCard extends Component {
   render() {
     console.log(this.product.inStock);
     return (
-      <div className="hover:shadow-xl p-1">
+      <div className="hover:shadow-xl p-1 mb-4">
         <div className="relative">
-          <Link to={`/products/${this.product.id}`} className="p-0">
+          <Link to={`/products/${this.product.id}`}>
             <img
               className="w-[330px] h-[330px] object-cover object-top p-0 m-auto  "
               src={this.product.gallery[0]}

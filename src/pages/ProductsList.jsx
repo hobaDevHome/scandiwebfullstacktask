@@ -7,7 +7,7 @@ export default class ProductsList extends Component {
   }
   render() {
     return (
-      <div className=" mt-5">
+      <div className=" mt-5  pb-10">
         <h2 className="text-3xl mb-12 mt-10">
           {getTitle(this.props.category)}
         </h2>
