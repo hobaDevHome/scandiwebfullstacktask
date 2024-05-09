@@ -18,7 +18,7 @@ export default class NavBar extends Component {
   render() {
     return (
       <div className="w-full flex justify-between mt-4">
-        <div>
+        <div className="flex-1">
           <ul className="flex ">
             <li
               onClick={() => this.chooseCategory("women")}
@@ -52,12 +52,24 @@ export default class NavBar extends Component {
             </li>
           </ul>
         </div>
-        <div>
+        <div className="flex-1">
           <img src={logo} alt="logo" style={{ width: 41, height: 41 }} />
         </div>
-        <div>
+        <div className="relative">
           <AiOutlineShoppingCart fontSize={20} />
-          <div className="w-4 h-4 rounded-full bg-red">3</div>
+          <div
+            className="w-4 h-4 rounded-full  absolute top-[-7px] right-[-10px] flex text-white p-0 justify-center items-center  "
+            style={{
+              backgroundColor: "black",
+              color: "white",
+              fontSize: 10,
+              fontWeight: "bold",
+              paddingBottom: 3,
+              paddingLeft: 1,
+            }}
+          >
+            3
+          </div>
         </div>
       </div>
     );

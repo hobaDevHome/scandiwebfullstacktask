@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     colors: {
       "regal-green": "#5ECE7B",
+      my_black: "#000",
     },
   },
   plugins: [],
