@@ -1,0 +1,20 @@
+.root-container {
+  width: 580px;
+  height: 480px;
+  border: 1px solid rgb(7, 206, 0);
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.itemContainder {
+  background-color: red;
+  display: flex;
+  height: 95%;
+  width: max-content;
+}
+.item {
+  width: 400px;
+  background-color: white;
+  margin: 10px;
+}

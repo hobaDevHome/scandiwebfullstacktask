@@ -4,6 +4,8 @@ import SelectColor from "../components/SelectColor";
 import SelectSize from "../components/SelectSize";
 import SelectCapacity from "../components/SelectCapacity";
 import GreenButton from "../components/GreenButton";
+import ProductGallery from "../components/ProductGallery";
+import Carousel from "../components/Carousel";
 
 export default class ProductDetails extends Component {
   constructor(props) {
@@ -27,7 +29,13 @@ export default class ProductDetails extends Component {
     name: "iPhone 12 Pro",
     inStock: true,
     gallery: [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-family-hero?wid=940&amp;hei=1112&amp;fmt=jpeg&amp;qlt=80&amp;.v=1604021663000",
+      "https://images.canadagoose.com/image/upload/w_480,c_scale,f_auto,q_auto:best/v1576016105/product-image/2409L_61.jpg",
+      "https://images.canadagoose.com/image/upload/w_480,c_scale,f_auto,q_auto:best/v1576016107/product-image/2409L_61_a.jpg",
+      "https://images.canadagoose.com/image/upload/w_480,c_scale,f_auto,q_auto:best/v1576016108/product-image/2409L_61_b.jpg",
+      "https://images.canadagoose.com/image/upload/w_480,c_scale,f_auto,q_auto:best/v1576016109/product-image/2409L_61_c.jpg",
+      "https://images.canadagoose.com/image/upload/w_480,c_scale,f_auto,q_auto:best/v1576016110/product-image/2409L_61_d.jpg",
+      "https://images.canadagoose.com/image/upload/w_1333,c_scale,f_auto,q_auto:best/v1634058169/product-image/2409L_61_o.png",
+      "https://images.canadagoose.com/image/upload/w_1333,c_scale,f_auto,q_auto:best/v1634058159/product-image/2409L_61_p.png",
     ],
     description:
       "<p>Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands.</p>",
@@ -157,7 +165,9 @@ export default class ProductDetails extends Component {
   render() {
     return (
       <div className="mt-10 flex gap-2">
-        <div className="w-3/5 border-2">gallery</div>
+        <div className="w-3/5 border-2">
+          <Carousel imagesList={this.product.gallery} />
+        </div>
         <div className="w-2/5 border-2 p-4">
           <div
             style={{

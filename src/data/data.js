@@ -89,7 +89,7 @@ export const data = {
           "https://images.canadagoose.com/image/upload/w_1333,c_scale,f_auto,q_auto:best/v1634058169/product-image/2409L_61_o.png",
           "https://images.canadagoose.com/image/upload/w_1333,c_scale,f_auto,q_auto:best/v1634058159/product-image/2409L_61_p.png",
         ],
-        description: "<p>Awesome winter jacket</p>",
+        description: "<p>Awesome winter <b>jacket</b></p>",
         category: "clothes",
         attributes: [
           {
