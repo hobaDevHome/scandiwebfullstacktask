@@ -11,44 +11,13 @@ export default class SelectSize extends Component {
     this.setState({ selectedSize: size });
     this.props.chooseSize(size);
   }
-  sizeObject = {
-    id: "Size",
-    items: [
-      {
-        displayValue: "40",
-        value: "40",
-        id: "40",
-        __typename: "Attribute",
-      },
-      {
-        displayValue: "41",
-        value: "41",
-        id: "41",
-        __typename: "Attribute",
-      },
-      {
-        displayValue: "42",
-        value: "42",
-        id: "42",
-        __typename: "Attribute",
-      },
-      {
-        displayValue: "43",
-        value: "43",
-        id: "43",
-        __typename: "Attribute",
-      },
-    ],
-    name: "Size",
-    type: "text",
-    __typename: "AttributeSet",
-  };
+  sizeObject = this.props.sizeObject;
   render() {
     return (
       <div>
         <div
           style={{
-            fontSize: 30,
+            fontSize: 18,
             fontWeight: "bold",
             color: "#1D1F22",
             marginTop: 10,

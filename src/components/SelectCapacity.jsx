@@ -11,32 +11,13 @@ export default class SelectCapacity extends Component {
     this.setState({ selectedCapacity: capacity });
     this.props.chooseCapacity(capacity);
   }
-  capacityObject = {
-    id: "Capacity",
-    items: [
-      {
-        displayValue: "512G",
-        value: "512G",
-        id: "512G",
-        __typename: "Attribute",
-      },
-      {
-        displayValue: "1T",
-        value: "1T",
-        id: "1T",
-        __typename: "Attribute",
-      },
-    ],
-    name: "Capacity",
-    type: "text",
-    __typename: "AttributeSet",
-  };
+  capacityObject = this.props.capacityObject;
   render() {
     return (
       <div>
         <div
           style={{
-            fontSize: 30,
+            fontSize: 18,
             fontWeight: "bold",
             color: "#1D1F22",
             marginTop: 10,

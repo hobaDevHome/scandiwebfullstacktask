@@ -1,10 +1,27 @@
-import React, { Component } from "react";
+import React, { Component, Fragment, createRef } from "react";
 import { Link } from "react-router-dom";
 import SelectColor from "../components/SelectColor";
 import SelectSize from "../components/SelectSize";
 import SelectCapacity from "../components/SelectCapacity";
+import GreenButton from "../components/GreenButton";
 
 export default class ProductDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedColor: "",
+      selectedSize: "",
+      selectedCapacity: "",
+    };
+
+    this.descriptionRef = createRef();
+  }
+
+  componentDidMount() {
+    let htmlString = this.product.description;
+    this.descriptionRef.current.innerHTML = htmlString;
+  }
   product = {
     id: "apple-iphone-12-pro",
     name: "iPhone 12 Pro",
@@ -12,7 +29,8 @@ export default class ProductDetails extends Component {
     gallery: [
       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-family-hero?wid=940&amp;hei=1112&amp;fmt=jpeg&amp;qlt=80&amp;.v=1604021663000",
     ],
-    description: "This is iPhone 12. Nothing else to say.",
+    description:
+      "<p>Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands.</p>",
     category: "tech",
     attributes: [
       {
@@ -123,16 +141,20 @@ export default class ProductDetails extends Component {
   attributesTypes = this.product.attributes.map((at) => at.id);
 
   chooseColor(color) {
-    console.log("color", color);
+    console.log("sent color", color);
+    this.setState({ selectedColor: color });
   }
   chooseSize(size) {
-    console.log("size", size);
+    this.setState({ selectedSize: size });
   }
   chooseCapacity(capacity) {
-    console.log("capacity", capacity);
+    this.setState({ selectedCapacity: capacity });
   }
+  addToCartHandler() {
+    console.log("state", this.state);
+  }
+
   render() {
-    // console.log(this.product.attributes.filter((e) => e.id === "Color"));
     return (
       <div className="mt-10 flex gap-2">
         <div className="w-3/5 border-2">gallery</div>
@@ -150,15 +172,52 @@ export default class ProductDetails extends Component {
           </div>
           <div>
             {this.attributesTypes.includes("Capacity") && (
-              <SelectCapacity chooseCapacity={this.chooseCapacity} />
+              <SelectCapacity
+                chooseCapacity={(c) => this.chooseCapacity(c)}
+                capacityObject={
+                  this.product.attributes.filter((e) => e.id === "Capacity")[0]
+                }
+              />
             )}
             {this.attributesTypes.includes("Color") && (
-              <SelectColor chooseColor={this.chooseColor} />
+              <SelectColor
+                chooseColor={(c) => this.chooseColor(c)}
+                colorsObject={
+                  this.product.attributes.filter((e) => e.id === "Color")[0]
+                }
+              />
             )}
             {this.attributesTypes.includes("Size") && (
-              <SelectSize chooseSize={this.chooseSize} />
+              <SelectSize
+                chooseSize={(s) => this.chooseSize(s)}
+                sizeObject={
+                  this.product.attributes.filter((e) => e.id === "Size")[0]
+                }
+              />
             )}
           </div>
+          <div
+            style={{
+              fontSize: 18,
+              fontWeight: "bold",
+              color: "#1D1F22",
+              marginTop: 10,
+              marginBottom: 10,
+            }}
+          >
+            <div className="mt-6 mb-6">Price:</div>
+            <div style={{ fontSize: 24 }}>
+              ${this.product.prices[0].amount.toFixed(2)}
+            </div>
+          </div>
+          <div onClick={() => this.addToCartHandler()}>
+            <GreenButton label={"Add to cart"} />
+          </div>
+          <div
+            className="w-80 mt-10"
+            style={{ fontSize: 16 }}
+            ref={this.descriptionRef}
+          ></div>
         </div>
       </div>
     );

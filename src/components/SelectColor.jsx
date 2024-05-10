@@ -11,50 +11,13 @@ export default class SelectColor extends Component {
     this.setState({ selectedColor: color });
     this.props.chooseColor(color);
   }
-  colorsObject = {
-    id: "Color",
-    items: [
-      {
-        displayValue: "Green",
-        value: "#44FF03",
-        id: "Green",
-        __typename: "Attribute",
-      },
-      {
-        displayValue: "Cyan",
-        value: "#03FFF7",
-        id: "Cyan",
-        __typename: "Attribute",
-      },
-      {
-        displayValue: "Blue",
-        value: "#030BFF",
-        id: "Blue",
-        __typename: "Attribute",
-      },
-      {
-        displayValue: "Black",
-        value: "#000000",
-        id: "Black",
-        __typename: "Attribute",
-      },
-      {
-        displayValue: "White",
-        value: "#FFFFFF",
-        id: "White",
-        __typename: "Attribute",
-      },
-    ],
-    name: "Color",
-    type: "swatch",
-    __typename: "AttributeSet",
-  };
+  colorsObject = this.props.colorsObject;
   render() {
     return (
       <div>
         <div
           style={{
-            fontSize: 30,
+            fontSize: 18,
             fontWeight: "bold",
             color: "#1D1F22",
             marginTop: 10,
