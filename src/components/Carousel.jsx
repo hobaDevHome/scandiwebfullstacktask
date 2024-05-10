@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./Carousel.css";
-import { IoIosArrowDropupCircle } from "react-icons/io";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
+
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default class Carousel extends Component {
   constructor(props) {
@@ -32,48 +33,42 @@ export default class Carousel extends Component {
     this.setState({ thumbsPage: page });
   }
   componentDidUpdate(prevProps, prevState) {
-    let page = Math.floor(this.state.slide / 4);
+    let page = Math.floor(this.state.slide / 5);
     if (prevState.thumbsPage !== page) {
       this.setState({ thumbsPage: page });
     }
-
-    console.log("page", this.state.thumbsPage);
   }
 
   onThumbClick(thumb) {
-    // this.props.onClick(thumb);
+    let index = this.props.imagesList.findIndex((e) => e === thumb);
+
+    this.setState({ slide: index });
   }
   render() {
     return (
-      <div className="flex">
-        <div>
-          <div className="h-[480px] " style={{ overflowY: "hidden" }}>
-            <div
-              className="flex flex-col w-fit"
-              style={{ height: "max-content" }}
-            >
-              {this.props.imagesList
-                .slice(this.state.thumbsPage * 4, this.state.thumbsPage * 4 + 4)
-                .map((thumb) => (
-                  <div
-                    className="cursor-pointer"
-                    onClick={() => this.onThumbClick(thumb)}
-                  >
-                    <img
-                      className="w-[80px] h-[80px] object-cover mb-10 "
-                      src={thumb}
-                      alt=""
-                    />
-                  </div>
-                ))}
-            </div>
+      <div className="flex gap-2 mt-6 ">
+        <div className="h-[480px] mr-6">
+          <div className="flex flex-col w-fit">
+            {this.props.imagesList
+              .slice(this.state.thumbsPage * 5, this.state.thumbsPage * 5 + 5)
+              .map((thumb) => (
+                <div
+                  className="cursor-pointer"
+                  onClick={() => this.onThumbClick(thumb)}
+                >
+                  <img
+                    className="w-[80px] h-[80px] object-cover mb-6 object-top"
+                    src={thumb}
+                    alt=""
+                  />
+                </div>
+              ))}
           </div>
         </div>
         <div className="carousel">
-          <IoIosArrowDropupCircle
-            onClick={() => this.prevSlide()}
-            className="arrow arrow-left"
-          />
+          <div className="arrow arrow-left">
+            <IoIosArrowBack onClick={() => this.prevSlide()} size={30} />
+          </div>
           {this.props.imagesList.map((item, idx) => {
             return (
               <img
@@ -86,10 +81,9 @@ export default class Carousel extends Component {
               />
             );
           })}
-          <IoIosArrowDropdownCircle
-            onClick={() => this.nextSlide()}
-            className="arrow arrow-right"
-          />
+          <div className="arrow arrow-right">
+            <IoIosArrowForward onClick={() => this.nextSlide()} size={30} />
+          </div>
         </div>
       </div>
     );
