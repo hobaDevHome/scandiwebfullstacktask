@@ -17,8 +17,8 @@ export default class SelectSize extends Component {
       <div>
         <div
           style={{
-            fontSize: 18,
-            fontWeight: "bold",
+            fontSize: this.props.inCart ? 14 : 18,
+            fontWeight: this.props.inCart ? "normal" : "bold",
             color: "#1D1F22",
             marginTop: 10,
             marginBottom: 10,
@@ -29,7 +29,12 @@ export default class SelectSize extends Component {
         <div className="flex gap-2">
           {this.sizeObject.items.map((size) => (
             <div
-              className={`w-[63px] h-[45px] bg-white border-2
+              style={{
+                width: this.props.inCart ? 24 : 63,
+                height: this.props.inCart ? 24 : 45,
+                fontSize: this.props.inCart ? 14 : 16,
+              }}
+              className={`bg-white border-2 cursor-pointer
               
                ${
                  this.state.selectedSize === size.value

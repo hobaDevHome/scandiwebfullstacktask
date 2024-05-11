@@ -17,8 +17,8 @@ export default class SelectColor extends Component {
       <div>
         <div
           style={{
-            fontSize: 18,
-            fontWeight: "bold",
+            fontSize: this.props.inCart ? 14 : 18,
+            fontWeight: this.props.inCart ? "normal" : "bold",
             color: "#1D1F22",
             marginTop: 10,
             marginBottom: 10,
@@ -29,7 +29,12 @@ export default class SelectColor extends Component {
         <div className="flex gap-2">
           {this.colorsObject.items.map((color) => (
             <div
-              className={`w-[40px] h-[40px] bg-white
+              style={{
+                backgroundColor: "white",
+                width: this.props.inCart ? 24 : 40,
+                height: this.props.inCart ? 24 : 40,
+              }}
+              className={`
               
                ${
                  this.state.selectedColor === color.value
@@ -42,7 +47,11 @@ export default class SelectColor extends Component {
             >
               <div
                 className="w-[32px] h-[32px]"
-                style={{ backgroundColor: color.value }}
+                style={{
+                  backgroundColor: color.value,
+                  width: this.props.inCart ? 18 : 32,
+                  height: this.props.inCart ? 18 : 32,
+                }}
               ></div>
             </div>
           ))}

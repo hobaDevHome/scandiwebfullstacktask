@@ -8,12 +8,32 @@ const categories = ["all", "clothes", "tech"];
 const cartItems = [
   {
     id: "huarache-x-stussy-le",
-    name: "Nike Air Huarache Le",
+    name: "Running Short",
 
     image:
       "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087",
 
     attributes: [
+      {
+        id: "Capacity",
+        items: [
+          {
+            displayValue: "512G",
+            value: "512G",
+            id: "512G",
+            __typename: "Attribute",
+          },
+          {
+            displayValue: "1T",
+            value: "1T",
+            id: "1T",
+            __typename: "Attribute",
+          },
+        ],
+        name: "Capacity",
+        type: "text",
+        __typename: "AttributeSet",
+      },
       {
         id: "Size",
         items: [
@@ -149,7 +169,7 @@ export default class NavBar extends Component {
 
   render() {
     return (
-      <div className="w-full flex justify-between mt-4 relative">
+      <div className="w-full flex justify-between mt-4 relative z-10">
         <div className="absolute top-4 right-0">
           <Cart cartItems={cartItems} />
         </div>
